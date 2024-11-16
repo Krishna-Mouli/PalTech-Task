@@ -1,0 +1,10 @@
+fastapi[all]
+openai
+azure-storage-blob
+azure-data-tables
+tiktoken
+pinecone
+pyymal
+langchain_community
+pypdf2
+langchain
