@@ -13,3 +13,4 @@ class ConfigurationTypes(Enum):
     OpenAIModel = "openaimodel"
     EmbeddingModel = "embeddingmodel"
     VectorDimensions = "vectordimensions"
+    DefaultUser = "defaultuser"

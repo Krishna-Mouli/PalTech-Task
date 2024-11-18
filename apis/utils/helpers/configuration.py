@@ -15,7 +15,8 @@ class Configuration():
             "openaiapikey":"openai.key",   
             "openaimodel":"openai.model",
             "vectordimensions":"openai.vectordimensions",   
-            "embeddingmodel":"openai.embeddingmodel"  
+            "embeddingmodel":"openai.embeddingmodel",
+            "defaultuser":"user.defaultuser",
         }
 
     def get_config_values(self, config_key):       

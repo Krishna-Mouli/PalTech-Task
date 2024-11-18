@@ -15,3 +15,5 @@ class Files(BaseEntity):
     professionalexperience: str
     educationalbackground: str
     certifications: str
+    achievements: str
+    interests: str
