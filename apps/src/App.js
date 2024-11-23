@@ -1,23 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+
+import Navbar from './components/navbar';
+import Chat from './pages/chat';
+import Details from './pages/details';
+import Questionnaire from './pages/questionnaire';
+import View from './pages/view';
+import UploadPage from './components/upload';
+import { BrowserRouter as Router, Routes, Route, Navigate, Outlet   } from 'react-router-dom';
 
 function App() {
+  const ProcessLayout = () => {
+    return (
+      <div>
+        <Navbar /> 
+        <Outlet /> 
+      </div>
+    );
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Router>      
+        <Routes>
+          <Route path="/" element={<UploadPage />} />  
+          <Route path="/process" element={<ProcessLayout />}>
+            <Route index element={<Navigate to="view" />} />
+            <Route path="view" element={<View />} />
+            <Route path="details" element={<Details />} />
+            <Route path="chat" element={<Chat />} />
+            <Route path="questionnaire" element={<Questionnaire />} />
+          </Route>  
+        </Routes>
+      </Router>
     </div>
   );
 }

@@ -5,6 +5,6 @@ from typing import Optional
 
 class BaseEntity(BaseModel):
     PartitionKey: Optional[str] = None
-    RowKey: str = Field(default_factory=lambda: str(uuid4()))
+    RowKey: str = None
     timestamp: Optional[datetime] = Field(default=None, exclude=True)
     etag: Optional[str] = Field(default=None, exclude=True)

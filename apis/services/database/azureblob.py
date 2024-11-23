@@ -21,7 +21,7 @@ class AzureBlobServices():
         except Exception as e:
             logging.error(f"Container already exists or could not be created: {e}")        
 
-    async def upload_file(self, app_id, blob_name, file_stream) -> str:        
+    async def upload_file(self, resumeid, blob_name, file_stream) -> str:        
         blob_client = self.container_client.get_blob_client(blob_name) 
         await blob_client.upload_blob(file_stream, overwrite=True)  
         blob_url = blob_client.url      

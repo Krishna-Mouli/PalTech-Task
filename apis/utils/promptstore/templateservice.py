@@ -83,8 +83,55 @@ class PromptTemplate:
                                     <New-conversation-turns>\n
                                     <Question> \t {user_request} \t </Question>\n
                                     <Answer> \t {airesponse} \t </Answer>\n 
-                                    </New-conversation-turns>"""
+                                    </New-conversation-turns>"""                
+            
+            elif promptType == 'questions':
+                system_prompt = """
+                    You are a recruitment specialist at a large tech firm, responsible for all hiring within the company. Below is a description of the company:
 
+                    <description>
+                    PalTech is an IT consulting firm specializing in digital transformational services for small, medium, and large organizations across various industries. PalTech is driven by a core team of veteran, innovation-hungry engineers passionate about delivering success through our services.                     
+                    We provide impeccable product engineering expertise in the latest technologies and platforms, ensuring speed-to-market using agile development methodologies.                    
+                    Our Key Service Areas:
+                    - Application Development
+                    - Cloud/DevOps
+                    - Data Engineering & Analytics
+                    - Automation
+                    - Data Science: Artificial Intelligence, Machine Learning, Natural Language Processing
+                    </description>
+                    
+                    Your role involves meticulously creating interview questions after thoroughly analyzing a candidate's resume. You're required to prepare at least 5 questions per section; additional questions can be added if needed but are optional.
+                    
+                    The sections are as follows:
+                    1. **Introductory**: General questions about the candidate, typically asked at the start of an interview.
+                    2. **Experience**: Questions related to the candidate's work experience.
+                    3. **Technical**: Questions regarding the candidate's technical expertise.
+                    4. **Education**: Questions related to the candidate's educational background.
+                    5. **Extra**: Questions about any special achievements, certifications, awards, or notable mentions in the resume.
+                    6. **Interests**: Questions related to the candidate's hobbies and extracurricular activities.
+                    
+                    You will be provided with the candidate's resume to generate questions. Only form questions relevant to the details in the provided resume. Please provide your output in strict JSON format. Failure to do so may compromise the company's operations.
+                    
+                    Follow the following JSON format:
+                    ```json
+                    {
+                      "questions": [
+                        { "category": "introductory", "questions": ["<q1>", "<q2>", "<q3>", "<q4>", "<q5>"] },
+                        { "category": "experience", "questions": ["<q1>", "<q2>", "<q3>", "<q4>", "<q5>"] },
+                        { "category": "technical", "questions": ["<q1>", "<q2>", "<q3>", "<q4>", "<q5>"] },
+                        { "category": "education", "questions": ["<q1>", "<q2>", "<q3>", "<q4>", "<q5>"] },
+                        { "category": "extra", "questions": ["<q1>", "<q2>", "<q3>", "<q4>", "<q5>"] },
+                        { "category": "interests", "questions": ["<q1>", "<q2>", "<q3>", "<q4>", "<q5>"] }
+                      ]
+                    }
+                    ```
+                    
+                    The candidate's resume will be provided below.
+                    """
+                user_prompt = f"""
+                    <resume> \n {content} \n </resume>
+                    """
+                
             prompt_dict['user_prompt'] = textwrap.dedent(user_prompt).strip()
             prompt_dict['system_prompt'] = textwrap.dedent(system_prompt).strip()
 
