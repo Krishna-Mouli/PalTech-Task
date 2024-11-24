@@ -1,0 +1,18 @@
+database:
+  connectionstrng: 
+  containername: paltechresumeshortlisterapp
+vectorstore:
+  pineconekey: 
+  pineconeindex: paltech-interview-vectors
+  pineconenamespace: paltech-interview-namespace
+chunking:
+  chunkstatagy: recursive
+  chunksize: 800
+  chunkoverlap: 200
+openai:
+  key:
+  model: gpt-4o
+  embeddingmodel: text-embedding-3-large
+  vectordimensions: 3072
+user:
+  defaultuser: john.doe@pal.tech

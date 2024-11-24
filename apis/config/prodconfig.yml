@@ -1,0 +1,9 @@
+AWS:
+  #Config if the project is hosted onto AWS
+
+Azure:
+  #Config if the project is hosted on Azure
+
+GCP:
+  #Config if the project is hosted on GCP
+  
