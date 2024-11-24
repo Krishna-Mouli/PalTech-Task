@@ -1,10 +1,10 @@
 #  Getting Started with Resume Analyzer Python(Fast API) backend for PaLTech screening process 
 
-![logo](/images/palogo.png)
+![logo](images/palogo.png)
 
 # Architecture Followed for Assignment (POC)
 
-![Arch](/images/PalTech.png)
+![Arch](images/PalTech.png)
 
 The following is a rough architecture diagrm of the use case. We could discuss further improvements and additional developments. 
 
