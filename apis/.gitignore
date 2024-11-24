@@ -165,5 +165,7 @@ cython_debug/
 #.idea/
 
 #azurite
-__azurite_db_*.json
-__azurite_db_blob__.json
+/__azurite_db_*.json
+/__azurite_db_blob__.json
+/__azurite_db_blob__.json
+/__azurite_db_queue_extent__.json
