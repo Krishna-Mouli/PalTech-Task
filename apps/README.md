@@ -12,7 +12,7 @@ The above command is force enabled if you wish you could run it without force as
 Depeding on which port number your backend is running, please change the config file accordingy, the default port number will be `port:8000`, which is already configured. 
 
 Once done you will be redirected to the following page:
-![startscren](/images/initial.png)
+![startscren](apps/images/initial.png)
 
 Once you're here you are ready with front end. 
 
