@@ -1,6 +1,7 @@
-.theme {
+html, body {
     background-color: #191818;
     color: #fff;
     font-family: Courier, monospace;
-    margin: 0;
+    margin: 0; 
+    padding: 0; 
 }

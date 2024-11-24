@@ -46,7 +46,7 @@ class Ingestion:
         chunks = chunk_content(chunking_type = ChunkingTypes.Recursive, text = content)
 
         try:
-            vectors = await self.process_chunks(chunks = chunks, filename = filename, resumeid = resumeid, public_url = public_url)
+            vectors = await self.process_chunks(chunks = chunks, filename = filename, resumeid = resumeid, public_url = public_url, sourceid = sourceid)
         except Exception as e:
             return {"file": filename, "status": "failed at creating vectors", "error": str(e)}
         
@@ -57,7 +57,7 @@ class Ingestion:
         
         return {"file":filename, "status":"Completely Processd successfully"}
 
-    async def process_chunks(self, chunks: List[str], filename: str, resumeid: str, public_url: str):        
+    async def process_chunks(self, chunks: List[str], filename: str, resumeid: str, public_url: str, sourceid: str):        
         embedding_tasks = []
         for chunk in chunks:
             task = self._openai_service.EmbeddingsOpenAI(text = chunk)
@@ -68,6 +68,7 @@ class Ingestion:
             "values": vector,
             "metadata": {
                 "filename": filename,
+                "sourceid": sourceid,
                 "resumeid": resumeid,
                 "filepath": public_url,
                 "chunk_content": chunk

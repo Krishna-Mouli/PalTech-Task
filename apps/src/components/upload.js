@@ -7,12 +7,15 @@ import { useNavigate } from 'react-router-dom';
 import { setResume } from '../store/slice/resumeslice';
 import { setDetails } from '../store/slice/detailsslice';
 import CircularProgress from '@mui/material/CircularProgress';
+import { setQuestions } from '../store/slice/questionslice';
+import useApiClient from "../core/apiclient";
 
 const UploadPage = () => {
     const [selectedFile, setSelectedFile] = useState(null);
-    const [loading, setLoading] = useState(false); // Manage loading state
+    const [loading, setLoading] = useState(false); 
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const apiClient = useApiClient();
 
     const onFileChange = (event) => {
         const file = event.target.files[0];
@@ -27,33 +30,44 @@ const UploadPage = () => {
             return;
         }
 
-        setLoading(true); // Start the loading indicator
+        setLoading(true);
 
         const formData = new FormData();
         formData.append("file", selectedFile);
 
         try {
-            const response = await fetch('http://localhost:8000/api/v1/files/sourceid/123456/resumeid/f8b7c3a1-9d2e-4f5b-8c7a-6d4e3f2b1a9c/ingest', {
-                method: 'POST',
-                body: formData,
-            });             
-            if (response.ok) 
+            const uploadResponse  = await apiClient.post(
+                '/files/sourceid/123456/resumeid/f8b7c3a1-9d2e-4f5b-8c7a-6d4e3f2b1a9c/ingest',
+                formData
+            );  
+            if (uploadResponse.status === 200)
             { 
                 dispatch(setResume(selectedFile));
-                const detailsResponse = await fetch('http://127.0.0.1:8000/api/v1/resume/sourceid/123456/resumeid/f8b7c3a1-9d2e-4f5b-8c7a-6d4e3f2b1a9c/getdetails');
-                if (detailsResponse.ok) 
+                const detailsResponse = await apiClient.get('/resume/sourceid/123456/resumeid/f8b7c3a1-9d2e-4f5b-8c7a-6d4e3f2b1a9c/getdetails')
+                if (detailsResponse.status === 200) 
                 {
-                    const detailsData = await detailsResponse.json();
-                    dispatch(setDetails(detailsData)); 
-                    setLoading(false);
-                    alert("File uploaded and details fetched successfully!");
-                    navigate('/process/view');
+                    const detailsData = await detailsResponse.data
+                    dispatch(setDetails(detailsData));                                         
                 } 
                 else 
                 {
                     setLoading(false);
                     console.error("Failed to fetch extracted details");
-                }                                
+                }     
+                const questionsResponse = await apiClient.get('/resume/sourceid/123456/resumeid/f8b7c3a1-9d2e-4f5b-8c7a-6d4e3f2b1a9c/getquestions')
+                if (questionsResponse.status === 200) 
+                {
+                    const questionsData = await questionsResponse.data
+                    dispatch(setQuestions(questionsData)); 
+                    alert("File uploaded and details fetched successfully!");
+                    navigate('/process/view');
+                    setLoading(false);
+                }     
+                else 
+                {
+                    setLoading(false);
+                    console.error("Failed to fetch extracted details");
+                }                       
             } 
             else 
             {
@@ -115,7 +129,7 @@ const UploadPage = () => {
                     <input
                         type="file"
                         id="fileInput"
-                        style={{ display: 'none' }} // Hide the input field
+                        style={{ display: 'none' }}
                         onChange={onFileChange}
                     />
                     <Button

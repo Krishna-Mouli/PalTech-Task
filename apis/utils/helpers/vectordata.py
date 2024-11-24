@@ -11,7 +11,8 @@ class DataHelpers:
             vector_obj = Vectors(
                 vector_id = vector['id'],
                 chunk_content = vector['metadata']['chunk_content'],
-                app_id = vector['metadata']['appid'],
+                resumeid = vector['metadata']['resumeid'],
+                sourceid = vector['metadata']['sourceid'],
                 filename = vector['metadata']['filename'],
                 filepath = vector['metadata']['filepath'],
                 score = vector['score'],

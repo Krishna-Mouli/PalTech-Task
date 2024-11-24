@@ -12,7 +12,9 @@ function App() {
     return (
       <div>
         <Navbar /> 
-        <Outlet /> 
+        <div style={{ marginTop: '64px' }}>
+          <Outlet />
+        </div>
       </div>
     );
   };

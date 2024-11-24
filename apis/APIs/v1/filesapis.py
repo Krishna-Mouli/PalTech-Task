@@ -9,7 +9,7 @@ router = APIRouter()
 ALLOWED_EXTENSIONS = {".pdf"}
 MAX_FILE_SIZE = 10 * 1024 * 1024
 
-@router.post("/sourceid/{sourceid}/resumeid/{resumeid}/ingest")
+@router.post("/sourceid/{sourceid}/resumeid/{resumeid}/ingest", description = "Use this API to index resumes, the source id tell about the origins of the resume, rsumeid is a unique identifier for the resume")
 async def index_resumes(sourceid: str, resumeid: str, file: UploadFile = File(...)):                           
     extension = os.path.splitext(file.filename)[1]
     if extension not in ALLOWED_EXTENSIONS:

@@ -1,6 +1,5 @@
 import React from 'react';
 import resume from '../assets/images/resume.svg';
-
 import Typography from '@mui/material/Typography';
 import { Box } from '@mui/material';
 import { NavLink } from 'react-router-dom';
@@ -9,7 +8,7 @@ import Toolbar from '@mui/material/Toolbar';
 
 const Navbar = () => {
   return (
-    <AppBar position="static" sx={{ backgroundColor: '#000', color: '#fff' }}>
+    <AppBar position="fixed" sx={{ backgroundColor: '#000', color: '#fff' }}>
       <Toolbar>
         <div style={{ marginLeft: '30px', display: 'flex', alignItems: 'center' }}>
           <img

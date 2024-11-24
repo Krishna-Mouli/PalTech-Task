@@ -21,7 +21,7 @@ class PineConeService:
         except Exception as e:
             logging.error(f"Failed to upsert {e}")
 
-    def get_vectors(self, target_vectors, app_id: str = None):
+    def get_vectors(self, target_vectors, resumeid: str = None):
         try:
             response = self.index.query(
             namespace = self.namespace,
@@ -29,7 +29,7 @@ class PineConeService:
             top_k = 2,
             include_values = True,
             include_metadata = True,
-            filter={"appid": {"$eq": "f8b7c3a1-9d2e-4f5b-8c7a-6d4e3f2b1a9c"}}
+            filter={"resumeid": {"$eq": f"{resumeid}"}}
             )
             return (response.matches)
         except Exception as e:

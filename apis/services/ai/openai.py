@@ -13,8 +13,7 @@ class OpenAIServices:
     async def ChatCompletion(self, user_prompt, system_prompt, model=None, json_mode: bool = False):
         try:
             if model is None:
-                model = self._config.get_config_values(ConfigurationTypes.OpenAIModel.value)  
-            # Base parameters
+                model = self._config.get_config_values(ConfigurationTypes.OpenAIModel.value)             
             params = {
                 "model": model,
                 "messages": [
