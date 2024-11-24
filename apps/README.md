@@ -1,5 +1,5 @@
 # Getting Started with Resume Analyzer React App for PaLTech screening process 
-![logo](/public/palogo.png)
+![logo](public/palogo.png)
 
 Make sure to install node js before you begin, visit this site to install node: [node install](https://nodejs.org/en/download/package-manager) I would recommed downloading version 20.18.1 LTS as that is what I used for the development. 
 
